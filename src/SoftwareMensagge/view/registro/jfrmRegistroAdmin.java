@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Sofware_EnvioMensajesAguaCarabayllo.wiew.Mensage;
+package SoftwareMensagge.view.registro;
 
 /**
  *
  * @author Elvis
  */
-public class frmPanelControlMesagge extends javax.swing.JPanel {
+public class jfrmRegistroAdmin extends javax.swing.JPanel {
 
     /**
-     * Creates new form frmPanelControlMesagge
+     * Creates new form jfrmRegistroAdmin
      */
-    public frmPanelControlMesagge() {
+    public jfrmRegistroAdmin() {
         initComponents();
     }
 
