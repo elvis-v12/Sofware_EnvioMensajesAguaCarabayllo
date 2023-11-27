@@ -7,7 +7,7 @@ package SoftwareMensagge.view.registro;
 import Sofware_EnvioMensajesAguaCarabayllo.config.conexionSQl;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
+import java.sql.ResultSet;
 /**
  *
  * @author Elvis
@@ -20,7 +20,7 @@ conexionSQl conexionSQl;
     public frmRegistros() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
+        this. conexionSQl= new conexionSQl();
     }
 
     /**
@@ -174,34 +174,35 @@ conexionSQl conexionSQl;
     }//GEN-LAST:event_txtContraseñaKeyPressed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-  try {
-            String correo = txtUsuario.getText();
-    String password = txtContraseña.getText(); 
-    // Preparar la consulta
-   String consultaSQL = "INSERT INTO ingreso (correo, password) VALUES (?, ?)";
-PreparedStatement preparedStatement = conexionSQl.getConnection().prepareStatement(consultaSQL);
-preparedStatement.setString(1, correo); 
-preparedStatement.setString(2, password); 
+try {
+    String correo = txtUsuario.getText();
+    String password = txtContraseña.getText();
 
-    // Ejecutar la consulta
-    int filasAfectadas = preparedStatement.executeUpdate();
+    // Preparar la consulta para insertar un nuevo registro
+    String consultaSQL = "INSERT INTO registroadmi (correo, contraseña) VALUES (?, ?)";
+    try (PreparedStatement preparedStatement = conexionSQl.getConnection().prepareStatement(consultaSQL)) {
+        preparedStatement.setString(1, correo);
+        preparedStatement.setString(2, password);
 
-    if (filasAfectadas > 0) {
-        // Registro insertado exitosamente
-        System.out.println("Registro insertado exitosamente");
-        AutentificarUsuario AutentificarUsuario=new AutentificarUsuario();
-        AutentificarUsuario.setVisible(true);
-        dispose();
-    } else {
-        // No se pudo insertar el registro
-        System.out.println("No se pudo insertar el registro");
-    }
+        // Ejecutar la consulta para insertar el nuevo registro
+        int filasAfectadas = preparedStatement.executeUpdate();
 
-    // Cerrar el PreparedStatement
-    preparedStatement.close();
+        if (filasAfectadas > 0) {
+            // Registro insertado exitosamente
+            System.out.println("Registro insertado exitosamente");
+            AutentificarUsuario autentificarUsuario = new AutentificarUsuario();
+            autentificarUsuario.setVisible(true);
+            dispose();  // Cerrar la ventana actual
+        } else {
+            // No se pudo insertar el registro
+            System.out.println("No se pudo insertar el registro");
+        }
+    } // El PreparedStatement se cerrará automáticamente al salir del bloque try
+ 
 } catch (SQLException e) {
     e.printStackTrace();
 }
+
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnIngresarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnIngresarKeyPressed

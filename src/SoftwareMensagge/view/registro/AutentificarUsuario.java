@@ -23,6 +23,7 @@ conexionSQl conexionSQl;
     public AutentificarUsuario() {
         initComponents();
         this.setLocationRelativeTo(null);
+         this.conexionSQl = new conexionSQl();  // O como sea que inicialices tu objeto de conexión
     }
 
     /**
@@ -46,6 +47,7 @@ conexionSQl conexionSQl;
         btnRegistrar1 = new javax.swing.JButton();
         btnRegistrar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -81,6 +83,7 @@ conexionSQl conexionSQl;
         txtUsuario.setForeground(new java.awt.Color(255, 255, 255));
         txtUsuario.setBorder(null);
         txtUsuario.setCaretColor(new java.awt.Color(73, 181, 172));
+        txtUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsuarioActionPerformed(evt);
@@ -91,7 +94,7 @@ conexionSQl conexionSQl;
                 txtUsuarioKeyPressed(evt);
             }
         });
-        jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 270, 40));
+        jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 270, 50));
 
         jLabel6.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -113,7 +116,7 @@ conexionSQl conexionSQl;
                 txtContraseñaKeyPressed(evt);
             }
         });
-        jPanel1.add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, 270, 36));
+        jPanel1.add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, 270, 50));
 
         btnRegistrar1.setBackground(new java.awt.Color(73, 181, 172));
         btnRegistrar1.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
@@ -166,6 +169,10 @@ conexionSQl conexionSQl;
         jLabel8.setText("@2023-04 by grupo Web");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 570, -1, -1));
 
+        jLabel7.setBackground(new java.awt.Color(115, 33, 132));
+        jLabel7.setForeground(new java.awt.Color(255, 51, 51));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 40, 50));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -205,39 +212,38 @@ conexionSQl conexionSQl;
     }//GEN-LAST:event_txtContraseñaKeyPressed
 
     private void btnRegistrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrar1ActionPerformed
-  // Obtener la conexión a la base de datos
-        try (Connection conexion = conexionSQl.getConnection()) {
-            // Obtener el usuario y la contraseña ingresados por el usuario
-            String usuario = txtUsuario.getText();
-            String contraseña = new String(txtContraseña.getPassword());  // Para obtener la contraseña correctamente
-            // Construir la consulta SQL para autenticar al usuario
-            String consultaSQL = "SELECT * FROM ingreso WHERE correo = ? AND password = ?";
-            try {
-                // Preparar la consulta
-                try (PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL)) {
-                    preparedStatement.setString(1, usuario);
-                    preparedStatement.setString(2, contraseña);
+   // Obtener la conexión a la base de datos
+    try (Connection conexion = conexionSQl.getConnection()) {
+        // Obtener el usuario y la contraseña ingresados por el usuario
+        String usuario = txtUsuario.getText();
+        String contraseña = new String(txtContraseña.getPassword());  // Para obtener la contraseña correctamente
 
-                    // Ejecutar la consulta
-                    try (ResultSet resultado = preparedStatement.executeQuery()) {
-                        if (resultado.next()) {
-                            // Usuario autenticado correctamente
-                            Mensaje Mensaje=new Mensaje();
-                            Mensaje.setVisible(true);
-                            dispose();
-                            System.out.println("Usuario autenticado correctamente");
-                        } else {
-                            // Usuario no autenticado
-                            System.out.println("Usuario no autenticado");
-                        }
-                    }
+        // Construir la consulta SQL para autenticar al usuario
+String consultaSQL = "SELECT * FROM registroadmi WHERE correo = ? AND contraseña = ?";
+        // Preparar la consulta
+        try (PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL)) {
+            preparedStatement.setString(1, usuario);
+            preparedStatement.setString(2, contraseña);
+
+            // Ejecutar la consulta
+            try (ResultSet resultado = preparedStatement.executeQuery()) {
+                if (resultado.next()) {
+                    // Usuario autenticado correctamente
+                    Mensaje mensaje = new Mensaje();
+                    mensaje.setVisible(true);
+                    dispose();
+                    System.out.println("Usuario autenticado correctamente");
+                } else {
+                    // Usuario no autenticado
+                    System.out.println("Usuario no autenticado");
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
     }//GEN-LAST:event_btnRegistrar1ActionPerformed
 
     private void btnRegistrar1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnRegistrar1KeyPressed
@@ -268,6 +274,7 @@ dispose();
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField txtContraseña;
