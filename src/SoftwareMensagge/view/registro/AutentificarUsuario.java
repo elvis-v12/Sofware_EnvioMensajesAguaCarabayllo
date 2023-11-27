@@ -78,7 +78,7 @@ conexionSQl conexionSQl;
         jLabel5.setText("Gmail:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
 
-        txtUsuario.setBackground(new java.awt.Color(115, 33, 132));
+        txtUsuario.setBackground(new java.awt.Color(12, 164, 136));
         txtUsuario.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         txtUsuario.setForeground(new java.awt.Color(255, 255, 255));
         txtUsuario.setBorder(null);
@@ -101,7 +101,7 @@ conexionSQl conexionSQl;
         jLabel6.setText("Contraseña:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, -1));
 
-        txtContraseña.setBackground(new java.awt.Color(115, 33, 132));
+        txtContraseña.setBackground(new java.awt.Color(12, 164, 136));
         txtContraseña.setFont(txtContraseña.getFont().deriveFont(txtContraseña.getFont().getSize()+7f));
         txtContraseña.setForeground(new java.awt.Color(255, 255, 255));
         txtContraseña.setBorder(null);
