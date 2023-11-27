@@ -1,5 +1,6 @@
-package Sofware_EnvioMensajesAguaCarabayllo;
+package Sofware_EnvioMensajesAguaCarabayll.Controler;
 
+import Sofware_EnvioMensajesAguaCarabayllo.*;
 import SoftwareMensagge.view.registro.AutentificarUsuario;
 
 
