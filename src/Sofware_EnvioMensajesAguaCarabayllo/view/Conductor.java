@@ -27,8 +27,6 @@ public class Conductor extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -44,6 +42,8 @@ public class Conductor extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -62,65 +62,47 @@ public class Conductor extends javax.swing.JFrame {
 
         jLabel10.setBackground(new java.awt.Color(0, 0, 0));
         jLabel10.setFont(new java.awt.Font("Stencil", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("municipalidad distrital de carabayllo");
         Cabecera.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, 410, 30));
 
         jLabel11.setBackground(new java.awt.Color(0, 0, 0));
         jLabel11.setFont(new java.awt.Font("Stencil", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("registrar");
         Cabecera.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 100, 30));
 
         FondoPrincipal.add(Cabecera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 60));
 
-        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
         FondoPrincipal.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 220, 270, 130));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Subir Registro");
         FondoPrincipal.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 360, 130, 30));
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Ubicaciones");
-        FondoPrincipal.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, -1, -1));
+        FondoPrincipal.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sourse/284-F5-1300 (1).jpg"))); // NOI18N
         FondoPrincipal.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 200, 140));
 
-        jTextArea2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
-
-        FondoPrincipal.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, 320, -1));
-
         jButton2.setBackground(new java.awt.Color(245, 71, 9));
         jButton2.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sourse/ver-lista.png"))); // NOI18N
         jButton2.setText("Ver ");
-        FondoPrincipal.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 110, 30));
+        FondoPrincipal.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 110, 40));
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 0, 0));
         jButton3.setText("Registrar");
         FondoPrincipal.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, 110, 30));
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(0, 0, 0));
         jButton4.setText("Eliminar");
         FondoPrincipal.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 360, 110, 30));
-
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
         FondoPrincipal.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 100, 30));
 
         jLabel4.setFont(new java.awt.Font("Stencil", 1, 18)); // NOI18N
@@ -129,46 +111,47 @@ public class Conductor extends javax.swing.JFrame {
         FondoPrincipal.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Stencil", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("DNI");
         FondoPrincipal.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, -1, -1));
-
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
         FondoPrincipal.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 300, 100, 30));
 
         jLabel6.setFont(new java.awt.Font("Stencil", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("telefono");
         FondoPrincipal.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Stencil", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("usuarios registrados");
         FondoPrincipal.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 200, -1, -1));
-
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
         FondoPrincipal.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, 100, 30));
-
-        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
         FondoPrincipal.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 100, 30));
 
         jLabel8.setFont(new java.awt.Font("Stencil", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("apellidos");
         FondoPrincipal.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, -1, -1));
-
-        jTextField5.setBackground(new java.awt.Color(255, 255, 255));
         FondoPrincipal.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 100, 30));
 
         jLabel9.setFont(new java.awt.Font("Stencil", 1, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("condición");
         FondoPrincipal.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Stencil", 1, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("nombres");
         FondoPrincipal.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable1);
+
+        FondoPrincipal.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 430, 120));
 
         getContentPane().add(FondoPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 420));
 
@@ -196,9 +179,9 @@ public class Conductor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
