@@ -3,18 +3,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Sofware_EnvioMensajesAguaCarabayllo.view;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import Sofware_EnvioMensajesAguaCarabayllo.config.conexionSQl;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Elvis
  */
 public class ListaUbicaciones extends javax.swing.JFrame {
-
-    /**
-     * Creates new form ListaUbicaciones
-     */
+   
+private conexionSQl conexionSQL;
     public ListaUbicaciones() {
         initComponents();
+        conexionSQL = new conexionSQl();
     }
 
     /**
@@ -33,20 +39,21 @@ public class ListaUbicaciones extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        jDatosUbicacion = new javax.swing.JTable();
+        txtLote = new javax.swing.JTextField();
+        txtManzana = new javax.swing.JTextField();
+        txtAtapa = new javax.swing.JTextField();
+        txtdistrito = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        btnVer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,43 +84,48 @@ public class ListaUbicaciones extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Ubicaciones");
-        FondoPrincipal.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, -1));
+        FondoPrincipal.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sourse/284-F5-1300 (1).jpg"))); // NOI18N
         FondoPrincipal.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 200, 140));
 
-        jButton2.setBackground(new java.awt.Color(245, 71, 9));
-        jButton2.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sourse/ver-lista.png"))); // NOI18N
-        jButton2.setText("Ver ");
-        FondoPrincipal.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 110, 40));
+        btnAgregar.setBackground(new java.awt.Color(245, 71, 9));
+        btnAgregar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sourse/anadir.png"))); // NOI18N
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+        FondoPrincipal.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 100, 120, 40));
 
         jLabel4.setFont(new java.awt.Font("Stencil", 1, 18)); // NOI18N
         jLabel4.setText("Listar ubicaciones");
-        FondoPrincipal.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, -1, -1));
+        FondoPrincipal.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Stencil", 1, 18)); // NOI18N
-        jLabel13.setText("Lista de ubicaciones");
+        jLabel13.setText("Agregar ubicaciones");
         FondoPrincipal.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jDatosUbicacion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3"
+                "Distrito", "Lote", "Manzana", "Etapa"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(jDatosUbicacion);
 
         FondoPrincipal.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 610, 190));
-        FondoPrincipal.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, 90, 40));
-        FondoPrincipal.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 170, 90, 40));
-        FondoPrincipal.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 170, 90, 40));
-        FondoPrincipal.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 112, 180, 30));
+        FondoPrincipal.add(txtLote, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, 90, 40));
+        FondoPrincipal.add(txtManzana, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 170, 90, 40));
+        FondoPrincipal.add(txtAtapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 170, 90, 40));
+        FondoPrincipal.add(txtdistrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 112, 180, 30));
 
         jButton1.setBackground(new java.awt.Color(201, 50, 0));
         jButton1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
@@ -146,25 +158,32 @@ public class ListaUbicaciones extends javax.swing.JFrame {
         jLabel8.setText("Manzana:");
         FondoPrincipal.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 150, -1, -1));
 
+        btnVer.setBackground(new java.awt.Color(245, 71, 9));
+        btnVer.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnVer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sourse/ver-lista.png"))); // NOI18N
+        btnVer.setText("Ver ");
+        btnVer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerActionPerformed(evt);
+            }
+        });
+        FondoPrincipal.add(btnVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 110, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 842, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(FondoPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(FondoPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 844, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 477, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(FondoPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(FondoPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -173,6 +192,71 @@ public class ListaUbicaciones extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
+    String sql = "SELECT * FROM ubicaciones";
+
+    try (Connection conexión = conexionSQL.getConnection();
+         PreparedStatement declaración = conexión.prepareStatement(sql);
+         ResultSet resultados = declaración.executeQuery()) {
+
+        // Modificar el modelo de la tabla para agregar los encabezados
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Distrito");
+        modelo.addColumn("Lote");
+        modelo.addColumn("Manzana");
+        modelo.addColumn("Etapa");
+
+        // Iterar a través de los resultados y agregar las filas al modelo
+        while (resultados.next()) {
+            String distrito = resultados.getString("distrito");
+            String lote = resultados.getString("lote");
+            String manzana = resultados.getString("manzana");
+            String etapa = resultados.getString("etapa");
+
+            modelo.addRow(new Object[]{distrito, lote, manzana, etapa});
+        }
+
+        // Establecer el modelo actualizado en la tabla
+        jDatosUbicacion.setModel(modelo);
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    }//GEN-LAST:event_btnVerActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        // Obtener los valores de los campos de texto
+    String distrito = txtdistrito.getText();
+    String lote = txtLote.getText();
+    String manzana = txtManzana.getText();
+    String etapa = txtAtapa.getText();
+
+    // Consulta SQL de inserción
+    String sql = "INSERT INTO ubicaciones (distrito, lote, manzana, etapa) VALUES (?, ?, ?, ?)";
+
+    try (Connection conexión = conexionSQL.getConnection();
+         PreparedStatement declaración = conexión.prepareStatement(sql)) {
+
+        // Establecer los valores de los parámetros en la consulta
+        declaración.setString(1, distrito);
+        declaración.setString(2, lote);
+        declaración.setString(3, manzana);
+        declaración.setString(4, etapa);
+
+        // Ejecutar la consulta de inserción
+        int filasAfectadas = declaración.executeUpdate();
+
+       if (filasAfectadas > 0) {
+    JOptionPane.showMessageDialog(null, "Datos insertados correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    } else {
+    JOptionPane.showMessageDialog(null, "Error al insertar datos.", "Error", JOptionPane.ERROR_MESSAGE);
+   }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,8 +296,10 @@ public class ListaUbicaciones extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Cabecera;
     private javax.swing.JPanel FondoPrincipal;
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnVer;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JTable jDatosUbicacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -226,10 +312,9 @@ public class ListaUbicaciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField txtAtapa;
+    private javax.swing.JTextField txtLote;
+    private javax.swing.JTextField txtManzana;
+    private javax.swing.JTextField txtdistrito;
     // End of variables declaration//GEN-END:variables
 }

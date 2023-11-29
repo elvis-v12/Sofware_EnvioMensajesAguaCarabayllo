@@ -28,27 +28,27 @@ private String contraseña = "";
     public Connection getConnection() {
         return conexion;
     }
-     public static void main(String[] args) {
-        // Crear una instancia de la clase ConexionSQL
-        conexionSQl conexionSQL = new conexionSQl();
+    public static void main(String[] args) {
+    // Crear una instancia de la clase conexionSQl
+    conexionSQl conexionSQL = new conexionSQl();
 
-        // Obtener la conexión
-        Connection conexion = conexionSQL.getConnection();
+    // Obtener la conexión
+    Connection conexion = conexionSQL.getConnection();
 
-        // Verificar si la conexión es nula o no
-        if (conexion != null) {
-            // Aquí puedes realizar operaciones con la conexión a la base de datos
-            // Por ejemplo, ejecutar consultas SQL, insertar datos, etc.
+    // Verificar si la conexión es nula o no
+    if (conexion != null) {
+        // Aquí puedes realizar operaciones con la conexión a la base de datos
+        // Por ejemplo, ejecutar consultas SQL, insertar datos, etc.
 
-            // No olvides cerrar la conexión cuando hayas terminado
-            try {
-                conexion.close();
-                System.out.println("Conexión cerrada correctamente.");
-            } catch (SQLException e) {
-                System.err.println("Error al cerrar la conexión: " + e.getMessage());
-            }
-        } else {
-            System.err.println("La conexión a la base de datos no se estableció correctamente.");
+        // No olvides cerrar la conexión cuando hayas terminado
+        try {
+            conexion.close();
+            System.out.println("Conexión cerrada correctamente.");
+        } catch (SQLException e) {
+            System.err.println("Error al cerrar la conexión: " + e.getMessage());
         }
+    } else {
+        System.err.println("La conexión a la base de datos no se estableció correctamente.");
     }
+}
 }
