@@ -4,10 +4,14 @@
  */
 package SoftwareMensagge.view.registro;
 
-import Sofware_EnvioMensajesAguaCarabayllo.config.conexionSQl;
+import SoftwareMensagge.view.Dao.UsuarioDAO;
+import SoftwareMensagge.view.Dao.UsuarioDAOImpl;
+import Sofware_EnvioMensajesAguaCarabayll.Controler.Administrador;
+import Sofware_EnvioMensajesAguaCarabayllo.model.conexionSQl;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Elvis
@@ -43,7 +47,7 @@ conexionSQl conexionSQl;
         txtContraseña = new javax.swing.JPasswordField();
         jLabel7 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        btnIngresar = new javax.swing.JButton();
+        btnRegistrar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -120,28 +124,28 @@ conexionSQl conexionSQl;
         jSeparator2.setForeground(new java.awt.Color(73, 181, 172));
         jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 310, 10));
 
-        btnIngresar.setBackground(new java.awt.Color(73, 181, 172));
-        btnIngresar.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
-        btnIngresar.setForeground(new java.awt.Color(255, 255, 255));
-        btnIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sourse/perfil-del-usuario.png"))); // NOI18N
-        btnIngresar.setText("Registrarse");
-        btnIngresar.setBorderPainted(false);
-        btnIngresar.setContentAreaFilled(false);
-        btnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnIngresar.setFocusPainted(false);
-        btnIngresar.setRequestFocusEnabled(false);
-        btnIngresar.setVerifyInputWhenFocusTarget(false);
-        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrar.setBackground(new java.awt.Color(73, 181, 172));
+        btnRegistrar.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
+        btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sourse/perfil-del-usuario.png"))); // NOI18N
+        btnRegistrar.setText("Registrarse");
+        btnRegistrar.setBorderPainted(false);
+        btnRegistrar.setContentAreaFilled(false);
+        btnRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnRegistrar.setFocusPainted(false);
+        btnRegistrar.setRequestFocusEnabled(false);
+        btnRegistrar.setVerifyInputWhenFocusTarget(false);
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresarActionPerformed(evt);
+                btnRegistrarActionPerformed(evt);
             }
         });
-        btnIngresar.addKeyListener(new java.awt.event.KeyAdapter() {
+        btnRegistrar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnIngresarKeyPressed(evt);
+                btnRegistrarKeyPressed(evt);
             }
         });
-        jPanel2.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 210, 60));
+        jPanel2.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 210, 60));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -169,45 +173,42 @@ conexionSQl conexionSQl;
 
     private void txtContraseñaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseñaKeyPressed
         if (evt.getKeyCode() == evt.VK_ENTER) {
-            btnIngresar.requestFocus();
+            btnRegistrar.requestFocus();
         }
     }//GEN-LAST:event_txtContraseñaKeyPressed
 
-    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-try {
-    String correo = txtUsuario.getText();
-    String password = txtContraseña.getText();
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+ // Obtener los valores de las cajas de texto
+    String correo = txtUsuario.getText(); // Supongo que txtNuevoUsuario es tu campo de texto para el correo
+    String contraseña = new String(txtContraseña.getPassword()); // Supongo que txtNuevaContraseña es tu campo de texto para la contraseña
 
-    // Preparar la consulta para insertar un nuevo registro
-    String consultaSQL = "INSERT INTO registroadmi (correo, contraseña) VALUES (?, ?)";
-    try (PreparedStatement preparedStatement = conexionSQl.getConnection().prepareStatement(consultaSQL)) {
-        preparedStatement.setString(1, correo);
-        preparedStatement.setString(2, password);
+    // Crear un objeto Usuario y configurar sus atributos
+    Administrador nuevoUsuario = new Administrador(correo, contraseña);
 
-        // Ejecutar la consulta para insertar el nuevo registro
-        int filasAfectadas = preparedStatement.executeUpdate();
+    // Crear una instancia de UsuarioDAOImpl (o la implementación que estés utilizando)
+    UsuarioDAO usuarioDAO = new UsuarioDAOImpl(conexionSQl.getConnection());
 
-        if (filasAfectadas > 0) {
-            // Registro insertado exitosamente
-            System.out.println("Registro insertado exitosamente");
-            AutentificarUsuario autentificarUsuario = new AutentificarUsuario();
-            autentificarUsuario.setVisible(true);
-            dispose();  // Cerrar la ventana actual
-        } else {
-            // No se pudo insertar el registro
-            System.out.println("No se pudo insertar el registro");
-        }
-    } // El PreparedStatement se cerrará automáticamente al salir del bloque try
- 
-} catch (SQLException e) {
-    e.printStackTrace();
-}
+    // Llamar al método insertarUsuario para registrar el nuevo usuario
+    boolean registroExitoso = usuarioDAO.insertarUsuario(nuevoUsuario);
+     
+    if (registroExitoso) {
+        // Registro exitoso
+        JOptionPane.showMessageDialog(null, "Registro exitoso");
+      
+        // Abrir la ventana AutentificarUsuario
+        AutentificarUsuario autentificarUsuario = new AutentificarUsuario();
+        autentificarUsuario.setVisible(true);
+        dispose(); // Cerrar la ventana actual
+    } else {
+        // No se pudo insertar el registro
+        JOptionPane.showMessageDialog(null, "No se pudo insertar el registro");
+    }
 
-    }//GEN-LAST:event_btnIngresarActionPerformed
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
-    private void btnIngresarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnIngresarKeyPressed
+    private void btnRegistrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnRegistrarKeyPressed
 
-    }//GEN-LAST:event_btnIngresarKeyPressed
+    }//GEN-LAST:event_btnRegistrarKeyPressed
 
     /**
      * @param args the command line arguments
@@ -215,7 +216,7 @@ try {
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnIngresar;
+    private javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

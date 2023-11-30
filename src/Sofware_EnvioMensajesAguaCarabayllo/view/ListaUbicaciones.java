@@ -3,11 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Sofware_EnvioMensajesAguaCarabayllo.view;
+import SoftwareMensagge.view.Dao.UbicacionDAO;
+import SoftwareMensagge.view.Dao.UbicacionDAOImpl;
+import Sofware_EnvioMensajesAguaCarabayll.Controler.UbicacionesCarabayllo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import Sofware_EnvioMensajesAguaCarabayllo.config.conexionSQl;
+import Sofware_EnvioMensajesAguaCarabayllo.model.conexionSQl;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,11 +20,13 @@ import javax.swing.table.DefaultTableModel;
  * @author Elvis
  */
 public class ListaUbicaciones extends javax.swing.JFrame {
-   
-private conexionSQl conexionSQL;
+    
+    private conexionSQl conexionSQL;
+    UbicacionDAO UbicacionDAO;
     public ListaUbicaciones() {
         initComponents();
         conexionSQL = new conexionSQl();
+      UbicacionDAO = new UbicacionDAOImpl(conexionSQL.getConnection());
     }
 
     /**
@@ -194,67 +200,53 @@ private conexionSQl conexionSQL;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
-    String sql = "SELECT * FROM ubicaciones";
+  // Obtener la lista de ubicaciones
+    List<UbicacionesCarabayllo> ubicaciones = UbicacionDAO.obtenerUbicaciones();
 
-    try (Connection conexión = conexionSQL.getConnection();
-         PreparedStatement declaración = conexión.prepareStatement(sql);
-         ResultSet resultados = declaración.executeQuery()) {
+    // Crear un modelo de tabla
+    DefaultTableModel model = new DefaultTableModel();
+    model.addColumn("Distrito");
+    model.addColumn("Lote");
+    model.addColumn("Manzana");
+    model.addColumn("Etapa");
 
-        // Modificar el modelo de la tabla para agregar los encabezados
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("Distrito");
-        modelo.addColumn("Lote");
-        modelo.addColumn("Manzana");
-        modelo.addColumn("Etapa");
-
-        // Iterar a través de los resultados y agregar las filas al modelo
-        while (resultados.next()) {
-            String distrito = resultados.getString("distrito");
-            String lote = resultados.getString("lote");
-            String manzana = resultados.getString("manzana");
-            String etapa = resultados.getString("etapa");
-
-            modelo.addRow(new Object[]{distrito, lote, manzana, etapa});
-        }
-
-        // Establecer el modelo actualizado en la tabla
-        jDatosUbicacion.setModel(modelo);
-
-    } catch (SQLException e) {
-        e.printStackTrace();
+    // Llenar el modelo con los datos de la lista
+    for (UbicacionesCarabayllo ubicacion : ubicaciones) {
+        model.addRow(new Object[]{ubicacion.getDistrito(), ubicacion.getLote(), ubicacion.getManzana(), ubicacion.getEtapa()});
     }
+
+    // Asignar el modelo a la tabla
+    jDatosUbicacion.setModel(model);
+
     }//GEN-LAST:event_btnVerActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        // Obtener los valores de los campos de texto
+      // Obtener los valores de las cajas de texto o componentes necesarios
     String distrito = txtdistrito.getText();
     String lote = txtLote.getText();
     String manzana = txtManzana.getText();
     String etapa = txtAtapa.getText();
 
-    // Consulta SQL de inserción
-    String sql = "INSERT INTO ubicaciones (distrito, lote, manzana, etapa) VALUES (?, ?, ?, ?)";
+    // Crear una instancia de UbicacionesCarabayllo con los valores ingresados
+    UbicacionesCarabayllo ubicacion = new UbicacionesCarabayllo(distrito, lote, manzana, etapa);
 
-    try (Connection conexión = conexionSQL.getConnection();
-         PreparedStatement declaración = conexión.prepareStatement(sql)) {
+// Crear una instancia de tu implementación de UbicacionesDAO (ajusta el nombre según tu implementación)
+UbicacionDAO ubicacionDAO = new UbicacionDAOImpl(conexionSQL.getConnection());
 
-        // Establecer los valores de los parámetros en la consulta
-        declaración.setString(1, distrito);
-        declaración.setString(2, lote);
-        declaración.setString(3, manzana);
-        declaración.setString(4, etapa);
+    // Llamar al método insertarUbicacion para agregar la ubicación a la base de datos
+    boolean insercionExitosa = ubicacionDAO.insertarUbicacion(ubicacion);
 
-        // Ejecutar la consulta de inserción
-        int filasAfectadas = declaración.executeUpdate();
-
-       if (filasAfectadas > 0) {
-    JOptionPane.showMessageDialog(null, "Datos insertados correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    if (insercionExitosa) {
+        // Ubicación insertada correctamente
+        JOptionPane.showMessageDialog(null, "Ubicación agregada exitosamente");
+        // Puedes realizar otras acciones aquí, como actualizar la interfaz o limpiar los campos
+        txtAtapa.setText("");
+        txtLote.setText("");
+        txtManzana.setText("");
+        txtdistrito.setText("");
     } else {
-    JOptionPane.showMessageDialog(null, "Error al insertar datos.", "Error", JOptionPane.ERROR_MESSAGE);
-   }
-
-    } catch (SQLException e) {
-        e.printStackTrace();
+        // Error al insertar la ubicación
+        JOptionPane.showMessageDialog(null, "Error al agregar la ubicación");
     }
     }//GEN-LAST:event_btnAgregarActionPerformed
 

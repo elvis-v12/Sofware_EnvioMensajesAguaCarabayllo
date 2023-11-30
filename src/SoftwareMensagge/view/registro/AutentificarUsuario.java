@@ -4,12 +4,15 @@
  */
 package SoftwareMensagge.view.registro;
 
-import Sofware_EnvioMensajesAguaCarabayllo.config.conexionSQl;
+import SoftwareMensagge.view.Dao.UsuarioDAO;
+import SoftwareMensagge.view.Dao.UsuarioDAOImpl;
+import Sofware_EnvioMensajesAguaCarabayllo.model.conexionSQl;
 import Sofware_EnvioMensajesAguaCarabayllo.view.Mensaje;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -212,37 +215,27 @@ conexionSQl conexionSQl;
     }//GEN-LAST:event_txtContraseñaKeyPressed
 
     private void btnRegistrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrar1ActionPerformed
-   // Obtener la conexión a la base de datos
-    try (Connection conexion = conexionSQl.getConnection()) {
-        // Obtener el usuario y la contraseña ingresados por el usuario
-        String usuario = txtUsuario.getText();
-        String contraseña = new String(txtContraseña.getPassword());  // Para obtener la contraseña correctamente
+     // Obtener los valores de las cajas de texto
+    String correo = txtUsuario.getText();
+    String contraseña = new String(txtContraseña.getPassword());
 
-        // Construir la consulta SQL para autenticar al usuario
-String consultaSQL = "SELECT * FROM registroadmi WHERE correo = ? AND contraseña = ?";
-        // Preparar la consulta
-        try (PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL)) {
-            preparedStatement.setString(1, usuario);
-            preparedStatement.setString(2, contraseña);
+    // Crear una instancia de UsuarioDAOImpl (o la implementación que estés utilizando)
+    UsuarioDAO usuarioDAO = new UsuarioDAOImpl(conexionSQl.getConnection());
 
-            // Ejecutar la consulta
-            try (ResultSet resultado = preparedStatement.executeQuery()) {
-                if (resultado.next()) {
-                    // Usuario autenticado correctamente
-                    Mensaje mensaje = new Mensaje();
-                    mensaje.setVisible(true);
-                    dispose();
-                    System.out.println("Usuario autenticado correctamente");
-                } else {
-                    // Usuario no autenticado
-                    System.out.println("Usuario no autenticado");
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    } catch (SQLException ex) {
-        ex.printStackTrace();
+    // Llamar al método autenticarUsuario para verificar las credenciales del usuario
+    boolean autenticado = usuarioDAO.autenticarUsuario(correo, contraseña);
+
+    if (autenticado) {
+        // Usuario autenticado correctamente
+        JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso");
+        // Aquí puedes abrir la nueva ventana, cambiar la interfaz, etc.
+        // Abrir la ventana AutentificarUsuario
+        Mensaje Mensaje = new Mensaje();
+        Mensaje.setVisible(true);
+        dispose(); // Cerrar la ventana actual
+    } else {
+        // Usuario no autenticado
+        JOptionPane.showMessageDialog(null, "Inicio de sesión fallido");
     }
     }//GEN-LAST:event_btnRegistrar1ActionPerformed
 

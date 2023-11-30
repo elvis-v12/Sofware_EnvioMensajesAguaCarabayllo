@@ -1,7 +1,9 @@
 
 package Sofware_EnvioMensajesAguaCarabayllo.view;
 
-import Sofware_EnvioMensajesAguaCarabayllo.config.conexionSQl;
+import Sofware_EnvioMensajesAguaCarabayll.Controler.Registro;
+import Sofware_EnvioMensajesAguaCarabayll.Controler.UbicacionesCarabayllo;
+import Sofware_EnvioMensajesAguaCarabayllo.model.conexionSQl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -233,6 +235,7 @@ private DefaultTableModel modeloTabla;
             String lote = resultados.getString("lote");
             String manzana = resultados.getString("manzana");
             String etapa = resultados.getString("etapa");
+       UbicacionesCarabayllo ubicacion = new UbicacionesCarabayllo(distrito, lote, manzana, etapa);
 
             modelo.addRow(new Object[]{distrito, lote, manzana, etapa});
         }
@@ -251,7 +254,7 @@ private DefaultTableModel modeloTabla;
     String telefono = txtTelefono.getText();
     String condicion = jcCondicion.getSelectedItem().toString();
     String dni = txtDni.getText();
-
+  Registro Registro= new Registro(nombre, apellido, telefono, condicion, dni);
     // Validar si todos los campos están llenos antes de agregar a la tabla
     if (!nombre.isEmpty() && !apellido.isEmpty() && !telefono.isEmpty() && !dni.isEmpty()) {
         // Agregar fila temporal al modelo de la tabla
@@ -302,7 +305,7 @@ try {
             String telefono = jtRegistro.getValueAt(filaSeleccionada, 2).toString();
             String dni = jtRegistro.getValueAt(filaSeleccionada, 3).toString();
             String condicion = jtRegistro.getValueAt(filaSeleccionada, 4).toString();
-
+            Registro Registro= new Registro(nombre, apellido, telefono, condicion, dni);
             // Ahora, realiza la inserción en la base de datos con estos valores
             String sql = "INSERT INTO registro_entrega (nombre, apellido, telefono, dni, condicion) VALUES (?, ?, ?, ?, ?)";
 
