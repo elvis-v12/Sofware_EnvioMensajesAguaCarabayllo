@@ -191,7 +191,12 @@ private DefaultTableModel modeloTabla;
 
         FondoPrincipal.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 230, 480, 120));
 
-        jcCondicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "recibido", "no recibido" }));
+        jcCondicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "recibido", "no recibido" }));
+        jcCondicion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcCondicionActionPerformed(evt);
+            }
+        });
         FondoPrincipal.add(jcCondicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 262, 110, 30));
 
         jDatosUbicacion1.setModel(new javax.swing.table.DefaultTableModel(
@@ -338,6 +343,10 @@ try {
         JOptionPane.showMessageDialog(this, "Error al insertar datos en la base de datos: " + e.getMessage());
     }
     }//GEN-LAST:event_btnSubirRegistroActionPerformed
+
+    private void jcCondicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcCondicionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcCondicionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

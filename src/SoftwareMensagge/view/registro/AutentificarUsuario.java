@@ -7,7 +7,7 @@ package SoftwareMensagge.view.registro;
 import SoftwareMensagge.view.Dao.UsuarioDAO;
 import SoftwareMensagge.view.Dao.UsuarioDAOImpl;
 import Sofware_EnvioMensajesAguaCarabayllo.model.conexionSQl;
-import Sofware_EnvioMensajesAguaCarabayllo.view.Mensaje;
+import Sofware_EnvioMensajesAguaCarabayllo.view.EnvioMensaje;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -230,7 +230,7 @@ conexionSQl conexionSQl;
         JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso");
         // Aquí puedes abrir la nueva ventana, cambiar la interfaz, etc.
         // Abrir la ventana AutentificarUsuario
-        Mensaje Mensaje = new Mensaje();
+        EnvioMensaje Mensaje = new EnvioMensaje();
         Mensaje.setVisible(true);
         dispose(); // Cerrar la ventana actual
     } else {
