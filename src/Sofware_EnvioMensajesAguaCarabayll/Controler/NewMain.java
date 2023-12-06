@@ -3,6 +3,7 @@ package Sofware_EnvioMensajesAguaCarabayll.Controler;
 
 import Sofware_EnvioMensajesAguaCarabayllo.view.Conductor;
 import Sofware_EnvioMensajesAguaCarabayllo.view.EnvioMensaje;
+import Sofware_EnvioMensajesAguaCarabayllo.view.ListaUbicaciones;
 
 /**
  *
@@ -17,7 +18,7 @@ public class NewMain {
         // TODO code application logic here
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EnvioMensaje().setVisible(true);
+                new ListaUbicaciones().setVisible(true);
             }
         });
     }

@@ -221,7 +221,7 @@ private DefaultTableModel modeloTabla;
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        String sql = "SELECT * FROM ubicaciones";
+        String sql = "SELECT * FROM conubicacion";
 
     try (Connection conexión = conexionSQL.getConnection();
          PreparedStatement declaración = conexión.prepareStatement(sql);

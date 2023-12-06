@@ -54,7 +54,7 @@ public class ListaUbicaciones extends javax.swing.JFrame {
         txtManzana = new javax.swing.JTextField();
         txtAtapa = new javax.swing.JTextField();
         txtdistrito = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        Enviar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -133,16 +133,16 @@ public class ListaUbicaciones extends javax.swing.JFrame {
         FondoPrincipal.add(txtAtapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 170, 90, 40));
         FondoPrincipal.add(txtdistrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 112, 180, 30));
 
-        jButton1.setBackground(new java.awt.Color(201, 50, 0));
-        jButton1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sourse/enviar-mensaje.png"))); // NOI18N
-        jButton1.setText("Enviar ubicacion");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Enviar.setBackground(new java.awt.Color(201, 50, 0));
+        Enviar.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        Enviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sourse/enviar-mensaje.png"))); // NOI18N
+        Enviar.setText("Enviar ubicacion");
+        Enviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                EnviarActionPerformed(evt);
             }
         });
-        FondoPrincipal.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 420, -1, -1));
+        FondoPrincipal.add(Enviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 430, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -195,9 +195,43 @@ public class ListaUbicaciones extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarActionPerformed
+        try {
+              int filaSeleccionada = jDatosUbicacion.getSelectedRow();
+              if (filaSeleccionada != -1) {
+             String distrito = jDatosUbicacion.getValueAt(filaSeleccionada, 0).toString();
+            String lote = jDatosUbicacion.getValueAt(filaSeleccionada, 1).toString();
+            String manzana = jDatosUbicacion.getValueAt(filaSeleccionada, 2).toString();
+            String etapa = jDatosUbicacion.getValueAt(filaSeleccionada, 3).toString();
+            UbicacionesCarabayllo Registro= new UbicacionesCarabayllo(distrito, lote, manzana, etapa);
+            
+               String sql = "INSERT INTO conubicacion (distrito, lote, manzana, etapa) VALUES (?, ?, ?, ?)";
+                 try (Connection conexión = conexionSQL.getConnection();
+                 PreparedStatement declaración = conexión.prepareStatement(sql)) {
+                declaración.setString(1, distrito);
+                declaración.setString(2, lote);
+                declaración.setString(3, manzana);
+                declaración.setString(4, etapa);
+                 int filasAfectadas = declaración.executeUpdate();
+                  if (filasAfectadas > 0) {
+                    // Remover la fila seleccionada del modelo de la tabla
+                    DefaultTableModel modelo = (DefaultTableModel) jDatosUbicacion.getModel();
+                    modelo.removeRow(filaSeleccionada);
+
+                    JOptionPane.showMessageDialog(this, "Ubicaciones enviadas al ADMINISTRADOR .");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error al insertar datos en la base de datos. No se insertaron filas.");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecciona un registro para subir a la base de datos.");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error al insertar datos en la base de datos: " + e.getMessage());
+    }
+
+    }//GEN-LAST:event_EnviarActionPerformed
 
     private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
   // Obtener la lista de ubicaciones
@@ -214,8 +248,8 @@ public class ListaUbicaciones extends javax.swing.JFrame {
     for (UbicacionesCarabayllo ubicacion : ubicaciones) {
         model.addRow(new Object[]{ubicacion.getDistrito(), ubicacion.getLote(), ubicacion.getManzana(), ubicacion.getEtapa()});
     }
-
-    // Asignar el modelo a la tabla
+    JOptionPane.showMessageDialog(null, "DATOS LISTADOS CORRECTAMENTE");
+    // Asignar el modelon a la tabla
     jDatosUbicacion.setModel(model);
 
     }//GEN-LAST:event_btnVerActionPerformed
@@ -257,10 +291,10 @@ UbicacionDAO ubicacionDAO = new UbicacionDAOImpl(conexionSQL.getConnection());
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Cabecera;
+    private javax.swing.JButton Enviar;
     private javax.swing.JPanel FondoPrincipal;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnVer;
-    private javax.swing.JButton jButton1;
     private javax.swing.JTable jDatosUbicacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
