@@ -17,9 +17,9 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 public class EnvioMensaje extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Mensaje
-     */
+    public static final String ACCOUNT_SID = "ACd5071b739a2f1a38dd50c1cc5965f02d";
+    public static final String AUTH_TOKEN = "e6ba43666d7dc0338e9d08a380a4cfe0";
+    private String numero = "+17162612330";
     public EnvioMensaje() {
         initComponents();
         // Agregar el ActionListener al botón
@@ -108,7 +108,7 @@ public class EnvioMensaje extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        btnConductor = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
 
@@ -161,6 +161,11 @@ public class EnvioMensaje extends javax.swing.JFrame {
         jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 200, 79));
 
         jButton3.setText("Enviados");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 200, 80));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 200, 240));
@@ -268,19 +273,24 @@ public class EnvioMensaje extends javax.swing.JFrame {
         jLabel13.setText("Total de caracteres:");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 650, -1, -1));
 
-        jButton5.setText("jButton5");
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 610, -1, -1));
+        btnConductor.setText("Conductor");
+        btnConductor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConductorActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 600, 140, 50));
 
-        jButton6.setText("jButton6");
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 610, -1, -1));
+        jButton6.setText("Regresar");
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 600, 140, 50));
 
-        jButton7.setText("jButton7");
+        jButton7.setText("Enviar Mensaje");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 610, -1, -1));
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(689, 600, 140, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -351,8 +361,26 @@ public class EnvioMensaje extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+//         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+//        Message message = Message.creator(
+//                new com.twilio.type.PhoneNumber(txtNumero.getText().trim()),
+//                new com.twilio.type.PhoneNumber(numero),
+//                txtMensaje.getText())
+//            .create();
+//
+//        JOptionPane.showMessageDialog(null, "Mensaje enviado: " 
+//                + message.getSid());
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void btnConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConductorActionPerformed
+        ListaUbicaciones ListaUbicaciones=new ListaUbicaciones();
+        ListaUbicaciones.setVisible(true);
+        
+    }//GEN-LAST:event_btnConductorActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       
+    }//GEN-LAST:event_jButton3ActionPerformed
 private void mostrarHorarioSeleccionado() {
     // Obtener la fecha seleccionada del JDateChooser
     Date fechaSeleccionada = jDateChooser1.getDate();
@@ -380,11 +408,11 @@ private void mostrarHorarioSeleccionado() {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Cabecera;
+    private javax.swing.JButton btnConductor;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private com.toedter.calendar.JDateChooser jDateChooser1;
