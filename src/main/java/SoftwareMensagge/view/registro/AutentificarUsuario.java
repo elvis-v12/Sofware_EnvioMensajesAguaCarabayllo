@@ -57,7 +57,7 @@ ConexionSQL conexionSQl;
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sourse/minic (2).jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/minic (2).jpg"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -123,7 +123,7 @@ ConexionSQL conexionSQl;
         btnRegistrar1.setBackground(new java.awt.Color(73, 181, 172));
         btnRegistrar1.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
         btnRegistrar1.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegistrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sourse/ingresar.png"))); // NOI18N
+        btnRegistrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ingresar.png"))); // NOI18N
         btnRegistrar1.setText("Ingresar");
         btnRegistrar1.setBorderPainted(false);
         btnRegistrar1.setContentAreaFilled(false);
@@ -146,7 +146,7 @@ ConexionSQL conexionSQl;
         btnRegistrar.setBackground(new java.awt.Color(73, 181, 172));
         btnRegistrar.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
         btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sourse/perfil-del-usuario.png"))); // NOI18N
+        btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/perfil-del-usuario.png"))); // NOI18N
         btnRegistrar.setText("Registrarse");
         btnRegistrar.setBorderPainted(false);
         btnRegistrar.setContentAreaFilled(false);
@@ -216,6 +216,9 @@ ConexionSQL conexionSQl;
 
     // Crear una instancia de UsuarioDAOImpl (o la implementación que estés utilizando)
     UsuarioDAO usuarioDAO = new UsuarioDAOImpl(conexionSQl.getConnection());
+if (correo.isEmpty() || contraseña.isEmpty()) {
+    JOptionPane.showMessageDialog(null, "Por favor, completa todos los campos");
+} else {
 
     // Llamar al método autenticarUsuario para verificar las credenciales del usuario
     boolean autenticado = usuarioDAO.autenticarUsuario(correo, contraseña);
@@ -233,7 +236,7 @@ ConexionSQL conexionSQl;
         JOptionPane.showMessageDialog(null, "Inicio de sesión fallido");
     }
     }//GEN-LAST:event_btnRegistrar1ActionPerformed
-
+    }
     private void btnRegistrar1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnRegistrar1KeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegistrar1KeyPressed

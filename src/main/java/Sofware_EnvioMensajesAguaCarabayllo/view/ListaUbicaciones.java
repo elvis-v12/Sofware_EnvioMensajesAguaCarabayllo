@@ -85,16 +85,19 @@ public class ListaUbicaciones extends javax.swing.JFrame {
         jLabel11.setText("registrar");
         Cabecera.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 100, 30));
 
-        FondoPrincipal.add(Cabecera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 60));
+        FondoPrincipal.add(Cabecera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 60));
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Ubicaciones");
         FondoPrincipal.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/284-F5-1300 (1).jpg"))); // NOI18N
         FondoPrincipal.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 200, 140));
 
         btnAgregar.setBackground(new java.awt.Color(245, 71, 9));
         btnAgregar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/anadir.png"))); // NOI18N
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,6 +135,7 @@ public class ListaUbicaciones extends javax.swing.JFrame {
 
         Enviar.setBackground(new java.awt.Color(201, 50, 0));
         Enviar.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        Enviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/enviar-mensaje.png"))); // NOI18N
         Enviar.setText("Enviar ubicacion");
         Enviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,6 +166,7 @@ public class ListaUbicaciones extends javax.swing.JFrame {
 
         btnVer.setBackground(new java.awt.Color(245, 71, 9));
         btnVer.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnVer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ver-lista.png"))); // NOI18N
         btnVer.setText("Ver ");
         btnVer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,7 +188,7 @@ public class ListaUbicaciones extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(FondoPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(FondoPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 

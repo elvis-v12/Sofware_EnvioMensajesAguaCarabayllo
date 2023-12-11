@@ -127,7 +127,7 @@ ConexionSQL conexionSQl;
         btnRegistrar.setBackground(new java.awt.Color(73, 181, 172));
         btnRegistrar.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
         btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sourse/perfil-del-usuario.png"))); // NOI18N
+        btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/perfil-del-usuario.png"))); // NOI18N
         btnRegistrar.setText("Registrarse");
         btnRegistrar.setBorderPainted(false);
         btnRegistrar.setContentAreaFilled(false);
@@ -181,7 +181,9 @@ ConexionSQL conexionSQl;
  // Obtener los valores de las cajas de texto
     String correo = txtUsuario.getText(); // Supongo que txtNuevoUsuario es tu campo de texto para el correo
     String contraseña = new String(txtContraseña.getPassword()); // Supongo que txtNuevaContraseña es tu campo de texto para la contraseña
-
+if (correo.isEmpty() || contraseña.isEmpty()) {
+    JOptionPane.showMessageDialog(null, "Por favor, completa todos los campos");
+} else {
     // Crear un objeto Usuario y configurar sus atributos
     Administrador nuevoUsuario = new Administrador(correo, contraseña);
 
@@ -203,7 +205,7 @@ ConexionSQL conexionSQl;
         // No se pudo insertar el registro
         JOptionPane.showMessageDialog(null, "No se pudo insertar el registro");
     }
-
+}
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnRegistrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnRegistrarKeyPressed

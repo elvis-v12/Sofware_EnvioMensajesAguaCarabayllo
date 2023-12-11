@@ -141,11 +141,15 @@ public class EnvioMensaje extends javax.swing.JFrame {
         Cabecera.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 100, 30));
 
         jPanel1.add(Cabecera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/284-F5-1300 (1).jpg"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 200, 140));
 
         jPanel2.setBackground(new java.awt.Color(188, 163, 175));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jButton1.setBackground(new java.awt.Color(201, 50, 0));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar.png"))); // NOI18N
         jButton1.setText("Crear Mensaje");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,6 +158,8 @@ public class EnvioMensaje extends javax.swing.JFrame {
         });
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 80));
 
+        jButton2.setBackground(new java.awt.Color(201, 50, 0));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/correo-de-contacto.png"))); // NOI18N
         jButton2.setText("Contactos");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,7 +168,9 @@ public class EnvioMensaje extends javax.swing.JFrame {
         });
         jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 200, 79));
 
-        jButton3.setText("Enviados");
+        jButton3.setBackground(new java.awt.Color(201, 50, 0));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/todos.png"))); // NOI18N
+        jButton3.setText("Total");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -226,6 +234,7 @@ public class EnvioMensaje extends javax.swing.JFrame {
         jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 160, 32));
 
         jButton4.setBackground(new java.awt.Color(224, 57, 57));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/disco-flexible.png"))); // NOI18N
         jButton4.setText("GUARDAR HORARIO");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -275,6 +284,8 @@ public class EnvioMensaje extends javax.swing.JFrame {
         jLabel13.setText("Total de caracteres:");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 650, -1, -1));
 
+        btnConductor.setBackground(new java.awt.Color(201, 50, 0));
+        btnConductor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/chofer.png"))); // NOI18N
         btnConductor.setText("Conductor");
         btnConductor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -283,16 +294,25 @@ public class EnvioMensaje extends javax.swing.JFrame {
         });
         jPanel1.add(btnConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 600, 140, 50));
 
+        jButton6.setBackground(new java.awt.Color(201, 50, 0));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
         jButton6.setText("Regresar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 600, 140, 50));
 
+        jButton7.setBackground(new java.awt.Color(201, 50, 0));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/enviar-mensaje.png"))); // NOI18N
         jButton7.setText("Enviar Mensaje");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(689, 600, 140, 50));
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(689, 600, 170, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -413,8 +433,22 @@ if (columnaNumero != -1) {
     }//GEN-LAST:event_btnConductorActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       
+    String mensaje = txtMensaje.getText();
+
+    // Contar caracteres
+    int totalCaracteres = mensaje.length();
+
+    // Contar mensajes (asumiendo que cada línea es un mensaje)
+    int totalMensajes = mensaje.split("\n").length;
+
+    // Mostrar el resultado en algún lugar, por ejemplo, en un JLabel
+    jLabel12.setText("Resultado: Total de caracteres = " + totalCaracteres +
+                         ", Total de mensajes = " + totalMensajes);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    
+    }//GEN-LAST:event_jButton6ActionPerformed
 private void mostrarHorarioSeleccionado() {
     // Obtener la fecha seleccionada del JDateChooser
     Date fechaSeleccionada = jDateChooser1.getDate();

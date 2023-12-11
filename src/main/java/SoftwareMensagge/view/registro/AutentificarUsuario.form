@@ -51,7 +51,7 @@
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Sourse/minic (2).jpg"/>
+              <Image iconType="3" name="/imagenes/minic (2).jpg"/>
             </Property>
           </Properties>
           <Constraints>
@@ -216,7 +216,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Sourse/ingresar.png"/>
+              <Image iconType="3" name="/imagenes/ingresar.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Ingresar"/>
             <Property name="borderPainted" type="boolean" value="false"/>
@@ -250,7 +250,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Sourse/perfil-del-usuario.png"/>
+              <Image iconType="3" name="/imagenes/perfil-del-usuario.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Registrarse"/>
             <Property name="borderPainted" type="boolean" value="false"/>
