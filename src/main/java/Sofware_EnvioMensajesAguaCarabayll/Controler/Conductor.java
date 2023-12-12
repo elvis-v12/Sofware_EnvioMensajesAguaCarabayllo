@@ -4,10 +4,6 @@
  */
 package Sofware_EnvioMensajesAguaCarabayll.Controler;
 
-/**
- *
- * @author Elvis
- */
 public class Conductor {
     
 }
