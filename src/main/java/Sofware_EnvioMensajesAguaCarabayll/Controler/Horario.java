@@ -3,10 +3,6 @@ package Sofware_EnvioMensajesAguaCarabayll.Controler;
 
 
 public class Horario {
-<<<<<<< HEAD
-=======
-  
->>>>>>> 1c22aefb01ac57a0eed258cefd8c430a92f0db4d
     private String dia;
     private String hora;
     private String mes;
@@ -19,11 +15,6 @@ public class Horario {
         this.año = año;
     }
 
-<<<<<<< HEAD
-=======
-    // Métodos para acceder a los atributos
-
->>>>>>> 1c22aefb01ac57a0eed258cefd8c430a92f0db4d
     public String getDia() {
         return dia;
     }
@@ -55,16 +46,11 @@ public class Horario {
     public void setAño(String año) {
         this.año = año;
     }
-<<<<<<< HEAD
-    
-=======
+
    public Object[] RegistroHorarios(int numeracion){
         Object[] fila = {numeracion,dia,hora,mes,año};
         return fila;
     }
-
-
->>>>>>> 1c22aefb01ac57a0eed258cefd8c430a92f0db4d
 }
   
 

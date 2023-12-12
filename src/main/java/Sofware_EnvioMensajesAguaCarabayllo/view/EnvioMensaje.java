@@ -150,7 +150,7 @@ public class EnvioMensaje extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(201, 50, 0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar.png"))); // NOI18N
-        jButton1.setText("Crear Mensaje");
+        jButton1.setText("Ver");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -372,7 +372,8 @@ public class EnvioMensaje extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     
+Lista_Conductor_Cisterna Lista_Conductor_Cisterna=new Lista_Conductor_Cisterna();    
+Lista_Conductor_Cisterna.setVisible(true);
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
