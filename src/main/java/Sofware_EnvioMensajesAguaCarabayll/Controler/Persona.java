@@ -36,7 +36,4 @@ public class Persona {
     public void setDni(String dni) {
         this.dni = dni;
     }
-    
-    
-    
 }

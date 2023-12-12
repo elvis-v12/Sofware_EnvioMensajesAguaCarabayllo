@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import SoftwareMensagge.view.Dao.UbicacionADDAOImpl;
+import java.util.List;
 
 
 /**
@@ -20,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 public class Conductor extends javax.swing.JFrame {
 private ConexionSQL conexionSQL;
 private DefaultTableModel modeloTabla;
-    public Conductor() {
+    public Conductor(int edad, String numeroLicencia, String nombre, String apellido, String dni) {
         initComponents();
          conexionSQL = new ConexionSQL();
          modeloTabla = new DefaultTableModel(); // Agrega esta línea
@@ -232,37 +234,19 @@ private DefaultTableModel modeloTabla;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        String sql = "SELECT * FROM conubicacion";
-
-    try (Connection conexión = conexionSQL.getConnection();
-         PreparedStatement declaración = conexión.prepareStatement(sql);
-         ResultSet resultados = declaración.executeQuery()) {
-
+        List<UbicacionesCarabayllo> ubicaciones = new UbicacionADDAOImpl().obtenerUbicaciones(); // Handle or log the exception appropriately
         // Modificar el modelo de la tabla para agregar los encabezados
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Distrito");
         modelo.addColumn("Lote");
         modelo.addColumn("Manzana");
         modelo.addColumn("Etapa");
-
         // Iterar a través de los resultados y agregar las filas al modelo
-        while (resultados.next()) {
-            String distrito = resultados.getString("distrito");
-            String lote = resultados.getString("lote");
-            String manzana = resultados.getString("manzana");
-            String etapa = resultados.getString("etapa");
-       UbicacionesCarabayllo ubicacion = new UbicacionesCarabayllo(distrito, lote, manzana, etapa);
-
-            modelo.addRow(new Object[]{distrito, lote, manzana, etapa});
+        for (UbicacionesCarabayllo ubicacion : ubicaciones) {
+            modelo.addRow(new Object[]{ubicacion.getDistrito(), ubicacion.getLote(), ubicacion.getManzana(), ubicacion.getEtapa()});
         }
-
         // Establecer el modelo actualizado en la tabla
         jDatosUbicacion1.setModel(modelo);
-
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
@@ -379,4 +363,24 @@ if (!nombre.isEmpty() && !apellido.isEmpty() && !telefono.isEmpty() && !dni.isEm
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
+
+    Object getEdad() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    Object getNumero_licencia() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    Object getNombre() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    Object getApellido() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    Object getDni() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

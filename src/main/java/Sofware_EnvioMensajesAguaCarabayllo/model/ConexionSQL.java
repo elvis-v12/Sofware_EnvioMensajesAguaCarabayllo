@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConexionSQL {
+public class ConexionSQL implements AutoCloseable {
     private String url = "jdbc:mysql://localhost:3306/enviomensaje";
     private String usuario = "root";
     private String contraseña = "";
@@ -30,6 +30,11 @@ public class ConexionSQL {
         return conexion;
     }
 
+    @Override
+    public void close() throws SQLException {
+        cerrarConexion();
+    }
+
     public void cerrarConexion() {
         if (conexion != null) {
             try {
@@ -42,23 +47,21 @@ public class ConexionSQL {
     }
 
     public static void main(String[] args) {
-        // Crear una instancia de la clase conexionSQl
-        ConexionSQL conexionSQL = new ConexionSQL();
+        // Usar try-with-resources para asegurar que la conexión se cierre automáticamente
+        try (ConexionSQL conexionSQL = new ConexionSQL()) {
+            // Obtener la conexión
+            Connection conexion = conexionSQL.getConnection();
 
-        // Obtener la conexión
-        Connection conexion = conexionSQL.getConnection();
-
-        // Verificar si la conexión es nula o no
-        if (conexion != null) {
-            try {
+            // Verificar si la conexión es nula o no
+            if (conexion != null) {
                 // Aquí puedes realizar operaciones con la conexión a la base de datos
                 // Por ejemplo, ejecutar consultas SQL, insertar datos, etc.
-            } finally {
-                // Siempre cierra la conexión en un bloque finally
-                conexionSQL.cerrarConexion();
+            } else {
+                System.err.println("La conexión a la base de datos no se estableció correctamente.");
             }
-        } else {
-            System.err.println("La conexión a la base de datos no se estableció correctamente.");
+        } catch (SQLException e) {
+            // Manejar la excepción, por ejemplo, imprimir el mensaje de error
+            System.err.println("Error: " + e.getMessage());
         }
     }
 }

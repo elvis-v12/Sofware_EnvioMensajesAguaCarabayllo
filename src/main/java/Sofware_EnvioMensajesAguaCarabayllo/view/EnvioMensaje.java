@@ -295,8 +295,7 @@ public class EnvioMensaje extends javax.swing.JFrame {
         jPanel1.add(btnConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 600, 140, 50));
 
         jButton6.setBackground(new java.awt.Color(201, 50, 0));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
-        jButton6.setText("Regresar");
+        jButton6.setText("Lista Ubicaciones");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -447,7 +446,8 @@ if (columnaNumero != -1) {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-    
+ListaUbicaciones ListaUbicaciones =new ListaUbicaciones();
+ListaUbicaciones.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 private void mostrarHorarioSeleccionado() {
     // Obtener la fecha seleccionada del JDateChooser

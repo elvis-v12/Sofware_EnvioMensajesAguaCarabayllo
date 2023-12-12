@@ -37,7 +37,7 @@ public class Controler {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Conductor().setVisible(true);
+                new AutentificarUsuario().setVisible(true);
             }
         });
     }
