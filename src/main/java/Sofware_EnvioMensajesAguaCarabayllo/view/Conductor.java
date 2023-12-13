@@ -3,7 +3,7 @@ package Sofware_EnvioMensajesAguaCarabayllo.view;
 
 import SoftwareMensagge.view.Dao.RegistroDAOImpl;
 import Sofware_EnvioMensajesAguaCarabayll.Controler.Usuario;
-import Sofware_EnvioMensajesAguaCarabayll.Controler.UbicacionesCarabayllo;
+import Sofware_EnvioMensajesAguaCarabayll.Controler.Ubicacion;
 import Sofware_EnvioMensajesAguaCarabayllo.model.ConexionSQL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -234,7 +234,7 @@ private DefaultTableModel modeloTabla;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        List<UbicacionesCarabayllo> ubicaciones = new UbicacionADDAOImpl().obtenerUbicaciones(); // Handle or log the exception appropriately
+        List<Ubicacion> ubicaciones = new UbicacionADDAOImpl().obtenerUbicaciones(); // Handle or log the exception appropriately
         // Modificar el modelo de la tabla para agregar los encabezados
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Distrito");
@@ -242,7 +242,7 @@ private DefaultTableModel modeloTabla;
         modelo.addColumn("Manzana");
         modelo.addColumn("Etapa");
         // Iterar a través de los resultados y agregar las filas al modelo
-        for (UbicacionesCarabayllo ubicacion : ubicaciones) {
+        for (Ubicacion ubicacion : ubicaciones) {
             modelo.addRow(new Object[]{ubicacion.getDistrito(), ubicacion.getLote(), ubicacion.getManzana(), ubicacion.getEtapa()});
         }
         // Establecer el modelo actualizado en la tabla

@@ -1,10 +1,10 @@
 package SoftwareMensagge.view.Dao;
 
-import Sofware_EnvioMensajesAguaCarabayll.Controler.UbicacionesCarabayllo;
+import Sofware_EnvioMensajesAguaCarabayll.Controler.Ubicacion;
 import java.util.List;
 
 public interface UbicacionDAO {
-    boolean insertarUbicacion(UbicacionesCarabayllo ubicacion);
-    List<UbicacionesCarabayllo> obtenerUbicaciones();
+    boolean insertarUbicacion(Ubicacion ubicacion);
+    List<Ubicacion> obtenerUbicaciones();
     // Otros métodos para manejar ubicaciones...
 }

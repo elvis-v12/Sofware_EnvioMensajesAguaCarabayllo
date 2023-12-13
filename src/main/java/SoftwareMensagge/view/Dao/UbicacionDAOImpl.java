@@ -1,6 +1,6 @@
 package SoftwareMensagge.view.Dao;
 import SoftwareMensagge.view.Dao.UbicacionDAO;
-import Sofware_EnvioMensajesAguaCarabayll.Controler.UbicacionesCarabayllo;
+import Sofware_EnvioMensajesAguaCarabayll.Controler.Ubicacion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +19,7 @@ public class UbicacionDAOImpl implements UbicacionDAO {
     }
 
     @Override
-    public boolean insertarUbicacion(UbicacionesCarabayllo ubicacion) {
+    public boolean insertarUbicacion(Ubicacion ubicacion) {
         // Consulta SQL de inserción
         String sql = "INSERT INTO ubicaciones (distrito, lote, manzana, etapa) VALUES (?, ?, ?, ?)";
         try (PreparedStatement declaración = conexion.prepareStatement(sql)) {
@@ -72,8 +72,8 @@ public class UbicacionDAOImpl implements UbicacionDAO {
 
     // Implementación del método obtenerUbicaciones
     @Override
-    public List<UbicacionesCarabayllo> obtenerUbicaciones() {
-        List<UbicacionesCarabayllo> ubicaciones = new ArrayList<>();
+    public List<Ubicacion> obtenerUbicaciones() {
+        List<Ubicacion> ubicaciones = new ArrayList<>();
         String sql = "SELECT * FROM ubicaciones";
 
         try (PreparedStatement declaración = conexion.prepareStatement(sql);
@@ -85,7 +85,7 @@ public class UbicacionDAOImpl implements UbicacionDAO {
                 String manzana = resultados.getString("manzana");
                 String etapa = resultados.getString("etapa");
 
-                UbicacionesCarabayllo ubicacion = new UbicacionesCarabayllo(distrito, lote, manzana, etapa);
+                Ubicacion ubicacion = new Ubicacion(distrito, lote, manzana, etapa);
                 ubicaciones.add(ubicacion);
             }
 

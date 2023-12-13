@@ -1,5 +1,5 @@
 package SoftwareMensagge.view.Dao;
-import Sofware_EnvioMensajesAguaCarabayll.Controler.UbicacionesCarabayllo;
+import Sofware_EnvioMensajesAguaCarabayll.Controler.Ubicacion;
 import Sofware_EnvioMensajesAguaCarabayllo.model.ConexionSQL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,8 +11,8 @@ import java.util.List;
 public class UbicacionADDAOImpl implements UbicacionADDAO {
 
     @Override
-    public List<UbicacionesCarabayllo> obtenerUbicaciones() {
-        List<UbicacionesCarabayllo> ubicaciones = new ArrayList<>();
+    public List<Ubicacion> obtenerUbicaciones() {
+        List<Ubicacion> ubicaciones = new ArrayList<>();
 
         String sql = "SELECT * FROM conubicacion";
 
@@ -26,7 +26,7 @@ public class UbicacionADDAOImpl implements UbicacionADDAO {
                 String manzana = resultados.getString("manzana");
                 String etapa = resultados.getString("etapa");
 
-                UbicacionesCarabayllo ubicacion = new UbicacionesCarabayllo(distrito, lote, manzana, etapa);
+                Ubicacion ubicacion = new Ubicacion(distrito, lote, manzana, etapa);
                 ubicaciones.add(ubicacion);
             }
 

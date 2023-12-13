@@ -5,7 +5,7 @@
 package Sofware_EnvioMensajesAguaCarabayllo.view;
 import SoftwareMensagge.view.Dao.UbicacionDAO;
 import SoftwareMensagge.view.Dao.UbicacionDAOImpl;
-import Sofware_EnvioMensajesAguaCarabayll.Controler.UbicacionesCarabayllo;
+import Sofware_EnvioMensajesAguaCarabayll.Controler.Ubicacion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -203,7 +203,7 @@ public class ListaUbicaciones extends javax.swing.JFrame {
             String lote = jDatosUbicacion.getValueAt(filaSeleccionada, 1).toString();
             String manzana = jDatosUbicacion.getValueAt(filaSeleccionada, 2).toString();
             String etapa = jDatosUbicacion.getValueAt(filaSeleccionada, 3).toString();
-            UbicacionesCarabayllo Registro= new UbicacionesCarabayllo(distrito, lote, manzana, etapa);
+            Ubicacion Registro= new Ubicacion(distrito, lote, manzana, etapa);
             
                String sql = "INSERT INTO conubicacion (distrito, lote, manzana, etapa) VALUES (?, ?, ?, ?)";
                  try (Connection conexión = conexionSQL.getConnection();
@@ -235,7 +235,7 @@ public class ListaUbicaciones extends javax.swing.JFrame {
 
     private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
   // Obtener la lista de ubicaciones
-    List<UbicacionesCarabayllo> ubicaciones = UbicacionDAO.obtenerUbicaciones();
+    List<Ubicacion> ubicaciones = UbicacionDAO.obtenerUbicaciones();
 
     // Crear un modelo de tabla
     DefaultTableModel model = new DefaultTableModel();
@@ -245,7 +245,7 @@ public class ListaUbicaciones extends javax.swing.JFrame {
     model.addColumn("Etapa");
 
     // Llenar el modelo con los datos de la lista
-    for (UbicacionesCarabayllo ubicacion : ubicaciones) {
+    for (Ubicacion ubicacion : ubicaciones) {
         model.addRow(new Object[]{ubicacion.getDistrito(), ubicacion.getLote(), ubicacion.getManzana(), ubicacion.getEtapa()});
     }
     JOptionPane.showMessageDialog(null, "DATOS LISTADOS CORRECTAMENTE");
@@ -262,7 +262,7 @@ public class ListaUbicaciones extends javax.swing.JFrame {
     String etapa = txtAtapa.getText();
 
     // Crear una instancia de UbicacionesCarabayllo con los valores ingresados
-    UbicacionesCarabayllo ubicacion = new UbicacionesCarabayllo(distrito, lote, manzana, etapa);
+    Ubicacion ubicacion = new Ubicacion(distrito, lote, manzana, etapa);
 
 // Crear una instancia de tu implementación de UbicacionesDAO (ajusta el nombre según tu implementación)
 UbicacionDAO ubicacionDAO = new UbicacionDAOImpl(conexionSQL.getConnection());

@@ -15,7 +15,6 @@ public class CisternaDAOImpl implements CisternaDAO {
     public CisternaDAOImpl(Connection conexion) {
         this.conexion = conexion;
     }
-
     @Override
     public boolean insertarCisterna(Cisterna cisterna) {
         String sql = "INSERT INTO cisterna (placa, capacidad, grifos) VALUES (?, ?, ?)";

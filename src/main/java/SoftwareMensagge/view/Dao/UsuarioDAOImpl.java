@@ -1,6 +1,6 @@
 package SoftwareMensagge.view.Dao;
 import Sofware_EnvioMensajesAguaCarabayll.Controler.Administrador;
-import Sofware_EnvioMensajesAguaCarabayll.Controler.UbicacionesCarabayllo;
+import Sofware_EnvioMensajesAguaCarabayll.Controler.Ubicacion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -5,13 +5,13 @@ package Sofware_EnvioMensajesAguaCarabayll.Controler;
  *
  * @author Elvis
  */
-public class UbicacionesCarabayllo {
+public class Ubicacion {
     private String distrito;
     private String lote;
     private String manzana;
     private String etapa;
     
-public UbicacionesCarabayllo(String distrito,String lote,String manzana,String etapa){
+public Ubicacion(String distrito,String lote,String manzana,String etapa){
     this.distrito=distrito;
     this.lote=lote;
     this.manzana=manzana;
